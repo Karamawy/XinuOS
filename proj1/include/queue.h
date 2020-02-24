@@ -16,11 +16,11 @@
 struct queue
 {
 	// TODO - pointer to head qentry
-	qentry *head;
+	struct qentry *head;
 	// TODO - pointer to tail qentry
-	qentry *tail;
+	struct qentry *tail;
 	// TODO - size of queue
-	int size;
+	uint32 size;
 };
 
 
@@ -30,8 +30,8 @@ struct qentry
 	// TODO - process ID
 	pid32 pid;
 	// TODO - other members
-	qentry *next;
-	qentry *prev;
+	struct qentry *next;
+	struct qentry *prev;
 };
 
 

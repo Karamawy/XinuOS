@@ -12,14 +12,14 @@ void	printqueue(struct queue *q)
 	//TODO - print all contents from head to tail
 	//TODO - format should be [(pid=p1), (pid=p2), ...]
 	struct qentry *entry = q->head;
-	printf("[");
-	while(q->size--){
-		if(q->size)
-		printf("(pid=%d), ",entry->pid);
-		else
-		printf("(pid=%d)]",entry->pid);
+	struct qentry *last = q->tail;
+	if(entry==last&&entry==NULL)return;
+	kprintf("[");
+	while(entry!=last){
+		kprintf("(pid=%d), ",entry->pid);
 		entry=entry->next;
 	}
+	kprintf("(pid=%d)]",last->pid);
 }
 
 /**
@@ -30,7 +30,8 @@ void	printqueue(struct queue *q)
 bool8	isempty(struct queue *q)
 {
 	//TODO
-	return !q||!q->size;
+	return (!q||!q->size);
+	//kprintf("is empty sh3'ala\n");
 }
 
 /**
@@ -41,7 +42,8 @@ bool8	isempty(struct queue *q)
 bool8	nonempty(struct queue *q)
 {
 	//TODO - don't just check q's size because q could be NULL
-	return q&&q->size;
+	//kprintf("non empty sh3'ala\n");
+	return (q&&q->size);
 }
 
 
@@ -53,12 +55,7 @@ bool8	nonempty(struct queue *q)
 bool8	isfull(struct queue *q)
 {
 	//TODO - check if there are at least NPROC processes in the queue
-	struct qentry* tmp = q->head;
-	while(tmp->next){
-		if(tmp->pid==NPROC)return TRUE;
-		tmp=tmp->next;
-	}
-	return FALSE;
+	return (q->size==NPROC);
 }
 
 
@@ -76,14 +73,20 @@ pid32 enqueue(pid32 pid, struct queue *q)
         //TODO - allocate space on heap for a new QEntry
 		struct qentry* new = (struct qentry*)malloc(sizeof(struct qentry));
         //TODO - initialize the new QEntry
-		struct qentry* last = q->tail;
-		last->next=new;
 		new->pid=pid;
 		new->next=NULL;
-		new->prev=last;
+		new->prev=q->tail;
+		q->tail->next=new;
         //TODO - insert into tail of queue
-		q->tail = new;
+		if(isempty(q)){
+			q->head=q->tail=new;
+		}
+		else {
+			q->tail=new;
+		}
         //TODO - return the pid on success
+		//kprintf("enqueue sh3'ala\n");
+		q->size++;
 		return pid;
 }
 
@@ -94,18 +97,15 @@ pid32 enqueue(pid32 pid, struct queue *q)
  * @return pid of the process removed, or EMPTY if queue is empty
  */
 pid32 dequeue(struct queue *q)
-{		pid32 pid;
+{		
         //TODO - return EMPTY if queue is empty
 		if(isempty(q))return EMPTY;
         //TODO - get the head entry of the queue
-		struct qentry* tmp=q->head;
         //TODO - unlink the head entry from the rest
-		q->head=tmp->next;
-		pid=tmp->pid;
         //TODO - free up the space on the heap
-		free(tmp,sizeof(tmp));
         //TODO - return the pid on success
-		return pid;
+		//kprintf("pid el dequee %d\n",pid);
+		return getfirst(q);
 }
 
 
@@ -122,10 +122,11 @@ struct qentry *getbypid(pid32 pid, struct queue *q)
 	//TODO - find the qentry with the given pid
 	//TODO - return a pointer to it
 	struct qentry* tmp = q->head;
-	while(tmp->next){
+	while(tmp){
 		if(tmp->pid==pid)return tmp;
 		tmp=tmp->next;
 	}
+	//kprintf("get by id sh3'ala\n");
 	return NULL;
 }
 
@@ -141,8 +142,15 @@ pid32	getfirst(struct queue *q)
 	//TODO - remove process from head of queue and return its pid
 	struct qentry* tmp = q->head;
 	pid32 pid= tmp->pid;
+	if(q->size==1){
+			q->tail=q->head=NULL;
+			free(tmp,sizeof(tmp));
+			return pid;
+		}
 	q->head=tmp->next;
 	free(tmp,sizeof(tmp));
+	q->size--;
+	//kprintf("get first sh3'ala\n");
 	return pid;
 }	
 
@@ -158,8 +166,15 @@ pid32	getlast(struct queue *q)
 	//TODO - remove process from tail of queue and return its pid
 	struct qentry* tmp = q->tail;
 	pid32 pid= tmp->pid;
-	q->head=tmp->prev;
+	if(q->size==1){
+			q->tail=q->head=NULL;
+			free(tmp,sizeof(tmp));
+			return pid;
+		}
+	q->tail=tmp->prev;
 	free(tmp,sizeof(tmp));
+	q->size--;
+	//kprintf("get last sh3'ala\n");
 	return pid;
 }
 
@@ -181,15 +196,17 @@ pid32	remove(pid32 pid, struct queue *q)
 	if(q->head->pid==pid)return getfirst(q);
 	if(q->tail->pid==pid)return getlast(q);
 	struct qentry* tmp = q->head;
-	while(tmp->next){
+	while(tmp){
 		if(tmp->pid==pid){
 			tmp->prev->next=tmp->next;
 			tmp->next->prev=tmp->prev;
 			free(tmp,sizeof(tmp));
+			q->size--;
 			return pid;
 		}
 		tmp=tmp->next;
 	}
+	//kprintf("remove sh3'ala\n");
 	//TODO - if pid does not exist in the queue, return SYSERR
 	return SYSERR;
 }

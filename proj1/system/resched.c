@@ -27,14 +27,15 @@ void	resched(void)		// assumes interrupts are disabled
 		ptold->prstate=PR_READY;
 	}
 	// TODO - dequeue next process off the ready queue and point ptnew to it
-	ptnew = &proctab[dequeue(readyqueue)];
+	pid32 pid =dequeue(readyqueue);
+	ptnew = &proctab[pid];
 	// TODO - change its state to "current" (i.e., running)
 	ptnew->prstate=PR_CURR;
 	// TODO - set currpid to reflect new running process' PID
-	currpid=(ptnew-proctab)/sizeof(procent);
+	currpid=pid;
 	// Context switch to next ready process
 	ctxsw(&ptold->prstkptr, &ptnew->prstkptr);
-
+	//kprintf("RESCHED SH3'ala");
 	// Old process returns here when resumed
 	return;
 }

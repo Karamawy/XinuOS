@@ -1,0 +1,157 @@
+make -C ../config/ -f ../config/Makefile clean all install
+make[1]: Entering directory `/home/xinu/xinu-x86-vm/config'
+rm -f config lex.yy.c y.tab.c
+flex config.l
+bison -y	 config.y
+gcc  -o config y.tab.c -lfl
+./config
+cp conf.h ../include
+cp conf.c ../system
+make[1]: Leaving directory `/home/xinu/xinu-x86-vm/config'
+making conf.h and conf.c
+make[1]: Entering directory `/home/xinu/xinu-x86-vm/config'
+cp conf.h ../include
+cp conf.c ../system
+make[1]: Leaving directory `/home/xinu/xinu-x86-vm/config'
+/usr/bin/gcc -E -I../include -DBRELOC=0x150000 -DBOOTPLOC=0x150000 	\
+			../system/start.S | /usr/bin/as --32 -o ../system/start.o
+/usr/bin/gcc -E -I../include ../system/ctxsw.S | /usr/bin/as --32 -o ../system/ctxsw.o
+/usr/bin/gcc -E -I../include ../system/clkint.S | /usr/bin/as --32 -o ../system/clkint.o
+/usr/bin/gcc -E -I../include ../system/intr.S | /usr/bin/as --32 -o ../system/intr.o
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/ascdate.o ../system/ascdate.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/bufinit.o ../system/bufinit.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/chprio.o ../system/chprio.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/panic.o ../system/panic.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/clkinit.o ../system/clkinit.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/close.o ../system/close.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/conf.o ../system/conf.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/control.o ../system/control.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/create.o ../system/create.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/freebuf.o ../system/freebuf.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/freemem.o ../system/freemem.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/getbuf.o ../system/getbuf.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/getc.o ../system/getc.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/getdev.o ../system/getdev.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/getitem.o ../system/getitem.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/getmem.o ../system/getmem.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/getpid.o ../system/getpid.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/getprio.o ../system/getprio.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/getstk.o ../system/getstk.c
+sh mkvers.sh
+/usr/bin/gcc -c -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include  -DVERSION=\""`cat version`"\" 		\
+		../system/initialize.c -o ../system/initialize.o
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/i386.o ../system/i386.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/insert.o ../system/insert.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/insertd.o ../system/insertd.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/ioerr.o ../system/ioerr.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/ionull.o ../system/ionull.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/kill.o ../system/kill.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/kprintf.o ../system/kprintf.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/main.o ../system/main.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/mkbufpool.o ../system/mkbufpool.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/newqueue.o ../system/newqueue.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/open.o ../system/open.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/pci.o ../system/pci.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/putc.o ../system/putc.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/queue.o ../system/queue.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/read.o ../system/read.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/ready.o ../system/ready.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/receive.o ../system/receive.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/recvclr.o ../system/recvclr.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/recvtime.o ../system/recvtime.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/resched.o ../system/resched.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/resume.o ../system/resume.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/sched_cntl.o ../system/sched_cntl.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/seek.o ../system/seek.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/semcount.o ../system/semcount.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/semcreate.o ../system/semcreate.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/semdelete.o ../system/semdelete.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/semreset.o ../system/semreset.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/send.o ../system/send.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/signal.o ../system/signal.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/signaln.o ../system/signaln.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/sleep.o ../system/sleep.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/suspend.o ../system/suspend.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/unsleep.o ../system/unsleep.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/userret.o ../system/userret.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/wait.o ../system/wait.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/wakeup.o ../system/wakeup.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/write.o ../system/write.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/xdone.o ../system/xdone.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/yield.o ../system/yield.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../system/evec.o ../system/evec.c
+/usr/bin/gcc -E -I../include ../device/tty/ttyDispatch.S | /usr/bin/as --32 -o 		\
+	../device/tty/ttyDispatch.o
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../device/tty/ttyControl.o ../device/tty/ttyControl.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../device/tty/ttyGetc.o ../device/tty/ttyGetc.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../device/tty/ttyInit.o ../device/tty/ttyInit.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../device/tty/ttyInter_in.o ../device/tty/ttyInter_in.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../device/tty/ttyInter_out.o ../device/tty/ttyInter_out.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../device/tty/ttyInterrupt.o ../device/tty/ttyInterrupt.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../device/tty/ttyKickOut.o ../device/tty/ttyKickOut.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../device/tty/ttyPutc.o ../device/tty/ttyPutc.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../device/tty/ttyRead.o ../device/tty/ttyRead.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../device/tty/ttyWrite.o ../device/tty/ttyWrite.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/addargs.o ../shell/addargs.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/lexan.o ../shell/lexan.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/shell.o ../shell/shell.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_argecho.o ../shell/xsh_argecho.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_cat.o ../shell/xsh_cat.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_clear.o ../shell/xsh_clear.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_uptime.o ../shell/xsh_uptime.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_echo.o ../shell/xsh_echo.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_exit.o ../shell/xsh_exit.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_devdump.o ../shell/xsh_devdump.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_help.o ../shell/xsh_help.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_kill.o ../shell/xsh_kill.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_memdump.o ../shell/xsh_memdump.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_ps.o ../shell/xsh_ps.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_sleep.o ../shell/xsh_sleep.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O -DBSDURG -I../include    -c -o ../shell/xsh_memstat.o ../shell/xsh_memstat.c
+make[1]: Entering directory `/home/xinu/xinu-x86-vm/lib/libxc'
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include abs.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include atoi.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include atol.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include bzero.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include ctype_.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include doprnt.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include doscan.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include fgetc.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include fdoprnt.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include fgets.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include fprintf.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include fputc.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include fputs.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include fscanf.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include getchar.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include labs.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include memchr.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include memcmp.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include memcpy.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include memset.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include printf.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include putchar.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include qsort.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include rand.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include sprintf.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include sscanf.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include strchr.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include strrchr.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include strstr.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include strncat.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include strncmp.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include strncpy.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include strnlen.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include strcmp.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include strcpy.c
+/usr/bin/gcc -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -Os -DBSDURG -I../../include strlen.c
+rm -f libxc.a
+ar cr libxc.a abs.o atoi.o atol.o bzero.o ctype_.o doprnt.o doscan.o fgetc.o fdoprnt.o fgets.o fprintf.o fputc.o fputs.o fscanf.o getchar.o labs.o memchr.o memcmp.o memcpy.o memset.o printf.o putchar.o qsort.o rand.o sprintf.o sscanf.o strchr.o strrchr.o strstr.o strncat.o strncmp.o strncpy.o strnlen.o strcmp.o strcpy.o strlen.o
+make[1]: Leaving directory `/home/xinu/xinu-x86-vm/lib/libxc'
+
+Now Loading all object files to produce GRUB bootable xinu:
+
+../system/start.o ../system/ctxsw.o ../system/clkint.o ../system/intr.o ../system/ascdate.o ../system/bufinit.o ../system/chprio.o ../system/panic.o ../system/clkinit.o ../system/close.o ../system/conf.o ../system/control.o ../system/create.o ../system/freebuf.o ../system/freemem.o ../system/getbuf.o ../system/getc.o ../system/getdev.o ../system/getitem.o ../system/getmem.o ../system/getpid.o ../system/getprio.o ../system/getstk.o ../system/initialize.o ../system/i386.o ../system/insert.o ../system/insertd.o ../system/ioerr.o ../system/ionull.o ../system/kill.o ../system/kprintf.o ../system/main.o ../system/mkbufpool.o ../system/newqueue.o ../system/open.o ../system/pci.o ../system/putc.o ../system/queue.o ../system/read.o ../system/ready.o ../system/receive.o ../system/recvclr.o ../system/recvtime.o ../system/resched.o ../system/resume.o ../system/sched_cntl.o ../system/seek.o ../system/semcount.o ../system/semcreate.o ../system/semdelete.o ../system/semreset.o ../system/send.o ../system/signal.o ../system/signaln.o ../system/sleep.o ../system/suspend.o ../system/unsleep.o ../system/userret.o ../system/wait.o ../system/wakeup.o ../system/write.o ../system/xdone.o ../system/yield.o ../system/evec.o ../device/tty/ttyDispatch.o ../device/tty/ttyControl.o ../device/tty/ttyGetc.o ../device/tty/ttyInit.o ../device/tty/ttyInter_in.o ../device/tty/ttyInter_out.o ../device/tty/ttyInterrupt.o ../device/tty/ttyKickOut.o ../device/tty/ttyPutc.o ../device/tty/ttyRead.o ../device/tty/ttyWrite.o ../shell/addargs.o ../shell/lexan.o ../shell/shell.o ../shell/xsh_argecho.o ../shell/xsh_cat.o ../shell/xsh_clear.o ../shell/xsh_uptime.o ../shell/xsh_echo.o ../shell/xsh_exit.o ../shell/xsh_devdump.o ../shell/xsh_help.o ../shell/xsh_kill.o ../shell/xsh_memdump.o ../shell/xsh_ps.o ../shell/xsh_sleep.o ../shell/xsh_memstat.o
+/usr/bin/ld -m elf_i386		   -dn -Ttext 0x0 -e start ../system/start.o ../system/ctxsw.o ../system/clkint.o ../system/intr.o ../system/ascdate.o ../system/bufinit.o ../system/chprio.o ../system/panic.o ../system/clkinit.o ../system/close.o ../system/conf.o ../system/control.o ../system/create.o ../system/freebuf.o ../system/freemem.o ../system/getbuf.o ../system/getc.o ../system/getdev.o ../system/getitem.o ../system/getmem.o ../system/getpid.o ../system/getprio.o ../system/getstk.o ../system/initialize.o ../system/i386.o ../system/insert.o ../system/insertd.o ../system/ioerr.o ../system/ionull.o ../system/kill.o ../system/kprintf.o ../system/main.o ../system/mkbufpool.o ../system/newqueue.o ../system/open.o ../system/pci.o ../system/putc.o ../system/queue.o ../system/read.o ../system/ready.o ../system/receive.o ../system/recvclr.o ../system/recvtime.o ../system/resched.o ../system/resume.o ../system/sched_cntl.o ../system/seek.o ../system/semcount.o ../system/semcreate.o ../system/semdelete.o ../system/semreset.o ../system/send.o ../system/signal.o ../system/signaln.o ../system/sleep.o ../system/suspend.o ../system/unsleep.o ../system/userret.o ../system/wait.o ../system/wakeup.o ../system/write.o ../system/xdone.o ../system/yield.o ../system/evec.o ../device/tty/ttyDispatch.o ../device/tty/ttyControl.o ../device/tty/ttyGetc.o ../device/tty/ttyInit.o ../device/tty/ttyInter_in.o ../device/tty/ttyInter_out.o ../device/tty/ttyInterrupt.o ../device/tty/ttyKickOut.o ../device/tty/ttyPutc.o ../device/tty/ttyRead.o ../device/tty/ttyWrite.o ../shell/addargs.o ../shell/lexan.o ../shell/shell.o ../shell/xsh_argecho.o ../shell/xsh_cat.o ../shell/xsh_clear.o ../shell/xsh_uptime.o ../shell/xsh_echo.o ../shell/xsh_exit.o ../shell/xsh_devdump.o ../shell/xsh_help.o ../shell/xsh_kill.o ../shell/xsh_memdump.o ../shell/xsh_ps.o ../shell/xsh_sleep.o ../shell/xsh_memstat.o 		\
+			../lib/libxc/libxc.a	-o ./xinu
+

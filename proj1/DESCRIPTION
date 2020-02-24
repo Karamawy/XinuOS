@@ -1,0 +1,94 @@
+July 7th, 2015, David Chiu
+This version has been modified for Puget Sound's CS475 course
+Project 1: Queues
+
+
+November 21st, 2011, Cheng Cheng
+Initial version:
+This tarball includes the basic verison of Xinu running on
+VMware Workstation. It has the core part of the kernel, the TTY driver and
+SHELL environment.
+
+
+Booting Xinu on i386-pc...
+
+(x86 Xinu) #92 (xinu@xinu-develop-end) Sat 11 Jul 10:24:26 PDT 2015
+
+  16777216 bytes physical memory.
+           [0x00000000 to 0x00FFFFFF]
+     15004 bytes of Xinu code.
+           [0x00000000 to 0x00003A9B]
+     20112 bytes of data.
+           [0x00003A9C to 0x0000892B]
+    620240 bytes of heap space below 640K.
+  15728640 bytes of heap space above 1M.
+           [0x00100000 to 0x00FFFFFF]
+Hello XINU WORLD!
+This is process 2
+This is process 2
+This is process 2
+This is process 2
+This is process 2
+This is process 2
+This is process 2
+This is process 2
+This is process 2
+This is process 2
+Hello XINU WORLD!
+This is process 3
+This is process 3
+This is process 3
+This is process 3
+This is process 3
+This is process 3
+This is process 3
+This is process 3
+This is process 3
+This is process 3
+Hello XINU WORLD!
+This is process 4
+This is process 4
+This is process 4
+This is process 4
+This is process 4
+This is process 4
+This is process 4
+This is process 4
+This is process 4
+This is process 4
+Hello XINU WORLD!
+This is process 5
+This is process 5
+This is process 5
+This is process 5
+This is process 5
+This is process 5
+This is process 5
+This is process 5
+This is process 5
+This is process 5
+1
+2
+3
+
+Hello XINU WORLD!
+This is process 6
+This is process 6
+This is process 6
+This is process 6
+This is process 6
+This is process 6
+This is process 6
+This is process 6
+This is process 6
+This is process 6
+10
+20
+30
+40
+50
+60
+
+
+
+All user processes have completed.

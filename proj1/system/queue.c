@@ -30,7 +30,7 @@ void	printqueue(struct queue *q)
 bool8	isempty(struct queue *q)
 {
 	//TODO
-	return (!q||!q->size);
+	return (!q||!q->size||!q->head);
 	//kprintf("is empty sh3'ala\n");
 }
 
@@ -43,7 +43,7 @@ bool8	nonempty(struct queue *q)
 {
 	//TODO - don't just check q's size because q could be NULL
 	//kprintf("non empty sh3'ala\n");
-	return (q&&q->size);
+	return (q&&q->size&&q->head);
 }
 
 
@@ -148,6 +148,7 @@ pid32	getfirst(struct queue *q)
 			return pid;
 		}
 	q->head=tmp->next;
+	q->head->prev=NULL;
 	free(tmp,sizeof(tmp));
 	q->size--;
 	//kprintf("get first sh3'ala\n");
@@ -172,6 +173,7 @@ pid32	getlast(struct queue *q)
 			return pid;
 		}
 	q->tail=tmp->prev;
+	q->tail->next=NULL;
 	free(tmp,sizeof(tmp));
 	q->size--;
 	//kprintf("get last sh3'ala\n");

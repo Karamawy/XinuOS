@@ -12,9 +12,9 @@ process	main(void)
 
 	a = b = c = 0;
 
-	prA = create(inc4ever, 2000, 14, "proc A", 1, 0);
-	prB = create(inc4ever, 2000, 12, "proc B", 1, 1);
-	prC = create(inc4ever, 2000, 10, "proc C", 1, 2);
+	prA = create(inc4ever, 2000, 14, 0, "proc A", 1, 0);
+	prB = create(inc4ever, 2000, 12, 0, "proc B", 1, 1);
+	prC = create(inc4ever, 2000, 10, 0, "proc C", 1, 2);
 	resume(prA);
 	resume(prB);
 	resume(prC);

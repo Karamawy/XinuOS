@@ -1,6 +1,7 @@
 /* process.h - isbadpid */
 
 /* parameters of spolicy */
+#define DEFAULT 0
 #define AGINGSCHED 1
 #define PROPORTIONALSHARE 2
 

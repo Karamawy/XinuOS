@@ -28,9 +28,16 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		if (ptold->prprio > firstkey(readylist)) {
 			return;
 		}
+		pid32 tmppid = firstid(readylist);// return pid
+		struct procent *pttmp;
+		while(tmppid) {
+			pttmp=&proctab[tmppid];
+			pttmp->prprio+=1;
+			tmppid=queuetab[tmppid].qnext;
+		}
 
 		/* Old process will no longer remain current */
-
+		chprio(currpid,ptold->intprio);
 		ptold->prstate = PR_READY;
 		insert(currpid, readylist, ptold->prprio);
 	}

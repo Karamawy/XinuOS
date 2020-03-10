@@ -12,14 +12,14 @@ process	main(void)
 
 	a = b = c = 0;
 
-	prA = create(inc4ever, 2000, 14, 0, "proc A", 1, 0);
-	prB = create(inc4ever, 2000, 12, 0, "proc B", 1, 1);
-	prC = create(inc4ever, 2000, 10, 0, "proc C", 1, 2);
+	prA = create(inc4ever, 2000, 14, AGINGSCHED, "proc A", 1, 0);
+	prB = create(inc4ever, 2000, 12, AGINGSCHED, "proc B", 1, 1);
+	prC = create(inc4ever, 2000, 10, AGINGSCHED, "proc C", 1, 2);
 	resume(prA);
 	resume(prB);
 	resume(prC);
-	kprintf(" Main sleep(10) ...\n");
-	sleep(10);
+	kprintf(" Main sleep(3) ...\n");
+	sleep(3);
 	kprintf(" Main Woke Up\n");
 	kill(prA);
 	kill(prB);

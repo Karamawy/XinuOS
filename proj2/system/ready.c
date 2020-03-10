@@ -22,8 +22,9 @@ status	ready(
 
 	prptr = &proctab[pid];
 	prptr->prstate = PR_READY;
+	prptr->prvstate=PR_SUSP;
 	insert(pid, readylist, prptr->prprio);
 	resched();
-
+	kprintf("%s",prptr->prname);
 	return OK;
 }

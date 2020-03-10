@@ -60,11 +60,11 @@ void	net_init (void)
 
 	/* Create the IP output process */
 
-	resume(create(ipout, NETSTK, NETPRIO, DEFAULT, "ipout", 0, NULL));
+	resume(create(ipout, NETSTK, NETPRIO, AGINGSCHED, "ipout", 0, NULL));
 
 	/* Create a network input process */
 
-	resume(create(netin, NETSTK, NETPRIO, DEFAULT, "netin", 0, NULL));
+	resume(create(netin, NETSTK, NETPRIO, AGINGSCHED, "netin", 0, NULL));
 }
 
 

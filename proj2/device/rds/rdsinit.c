@@ -33,7 +33,7 @@ devcall	rdsinit (
 	/*	device initialization occurs before interrupts	*/
 	/*	are enabled.					*/
 
-	rdptr->rd_comproc = create(rdsprocess, RD_STACK, RD_PRIO, DEFAULT,
+	rdptr->rd_comproc = create(rdsprocess, RD_STACK, RD_PRIO, AGINGSCHED,
 						"rdsproc", 1, rdptr);
 	if (rdptr->rd_comproc == SYSERR) {
 		panic("Cannot create remote disk process");

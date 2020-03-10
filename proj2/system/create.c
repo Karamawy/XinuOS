@@ -47,6 +47,8 @@ pid32	create(
 	prptr->prname[PNMLEN-1] = NULLCH;
 	prptr->spolicy = spolicy;
 	prptr->intprio=priority;
+	prptr->prvstate=-1;
+	prptr->pi=0;
 	for (i=0 ; i<PNMLEN-1 && (prptr->prname[i]=name[i])!=NULLCH; i++)
 		;
 	prptr->prsem = -1;
